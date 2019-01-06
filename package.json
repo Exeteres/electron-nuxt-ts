@@ -1,0 +1,8 @@
+{
+  "name": "electron-nuxt-ts",
+  "version": "0.0.1",
+  "main": "meta.js",
+  "description": "Electron + Nuxt + Typescript",
+  "author": "Exeteres <exeteres@yandex.ru> exeteres.ru",
+  "license": "MIT"
+}

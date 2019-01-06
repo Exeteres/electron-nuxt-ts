@@ -1,0 +1,27 @@
+{
+  "name": "{{name}}",
+  "author": "{{author}}",
+  "version": "0.0.1",
+  "main": "dist/main",
+  "scripts": {
+    "nuxt:generate": "nuxt generate config",
+    "nuxt:dev": "nuxt dev config",
+    "tsc:build": "tsc --build config/tsconfig.json",
+    "build:dist": "{{pm}} nuxt:generate && {{pm}} tsc:build",
+    "build:pack": "electron-builder --config config/electron-builder.json",
+    "build": "{{pm}} build:dist && {{pm}} build:pack",
+    "dev": "{{pm}} tsc:build && concurrently -n main,renderer -c blue,green \"cross-env NODE_ENV=development electron .\" \"{{pm}} nuxt:dev\""
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "electron": "^4.0.0",
+    "electron-builder": "^20.38.4",
+    "electron-devtools-installer": "^2.2.4",
+    "nuxt": "^2.3.4",
+    "typescript": "^3.2.2",
+    "wait-on": "^3.2.0"{{pp}}
+  },
+  "license": "MIT"
+}
