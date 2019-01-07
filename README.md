@@ -9,7 +9,6 @@
 - Main process fully written in TypeScript
 - Simple and minimalist file structure
 - Vue + Nuxt devtools
-- Preprocessors in Nuxt
 - Full nuxt server and compiler with hot reloading and preprocessors
 - Supporting native node addons out of the box
 - Powerful production build using electron-builder
