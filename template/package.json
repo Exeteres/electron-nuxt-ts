@@ -10,7 +10,7 @@
     "build:dist": "{{pm}} nuxt:generate && {{pm}} tsc:build",
     "build:pack": "electron-builder --config config/electron-builder.json",
     "build": "{{pm}} build:dist && {{pm}} build:pack",
-    "dev": "{{pm}} tsc:build && concurrently -n main,renderer -c blue,green \"cross-env NODE_ENV=development electron .\" \"{{pm}} nuxt:dev\""
+    "dev": "{{pm}} tsc:build && concurrently -k -n main,renderer -c blue,green \"cross-env NODE_ENV=development electron .\" \"{{pm}} nuxt:dev\""
   },
   "devDependencies": {
     "@types/node": "^10.12.18",

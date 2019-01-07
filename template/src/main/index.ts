@@ -22,4 +22,7 @@ app.on("ready", () => {
       });
     });
   } else win.loadFile("./dist/renderer/index.html");
+  win.on("close", () => {
+    app.quit();
+  });
 });
