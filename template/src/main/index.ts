@@ -1,13 +1,22 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
+const url = require("url");
+const waitOn = require("wait-on");
+
+const express = require("express");
+const getPort = require("get-port");
+const useragent = require("express-useragent");
 
 let win;
 
-app.on("ready", () => {
+function loadContent(port = 3000) {
   win = new BrowserWindow();
+  win.loadURL(`http://localhost:${port}`);
+}
+
+app.on("ready", () => {
   if (process.env.NODE_ENV === "development") {
     // Importing dev dependencies
-    const waitOn = require("wait-on");
     const {
       default: installExtension,
       VUEJS_DEVTOOLS
@@ -15,14 +24,25 @@ app.on("ready", () => {
 
     // Installing devtools
     installExtension(VUEJS_DEVTOOLS).then(() => {
-      // Wating for nuxt
-      waitOn({ resources: ["http://localhost:3000"], log: true }, () => {
-        // Loading nuxt
-        win.loadURL("http://localhost:3000");
+      waitOn({ resources: [`http://localhost:3000`], log: true }, () => {
+        loadContent();
       });
     });
-  } else win.loadFile("./dist/renderer/index.html");
-  win.on("close", () => {
-    app.quit();
-  });
+  } else {
+    let server = express();
+    server.use(useragent.express());
+
+    // Rejecting requests from browsers
+    server.use((req, res, next) => {
+      if (req.useragent.source.includes("Electron")) next();
+      else res.end();
+    });
+    server.use(express.static(path.resolve(__dirname, "../renderer")));
+
+    getPort().then(port => {
+      server.listen(port, "localhost", () => {
+        loadContent(port);
+      });
+    });
+  }
 });
