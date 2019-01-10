@@ -22,43 +22,39 @@ module.exports = {
       required: true,
       message: "Author"
     },
-    useYarn: {
-      type: "confirm",
-      required: false,
-      message: "Use Yarn?",
-      default: false
+    packageManager: {
+      type: "list",
+      message: "Package Manager",
+      choices: [
+        {
+          name: "NPM",
+          value: "npm"
+        },
+        {
+          name: "Yarn",
+          value: "yarn"
+        }
+      ]
     },
     preprocessors: {
       type: "checkbox",
       required: false,
-      message: "Preprocessors to use in Nuxt",
+      message: "Nuxt preprocessors",
       choices: ["SASS/SCSS", "Pug", "TypeScript", "CoffeeScript"],
       default: []
     }
   },
   helpers: {
-    pm(opts) {
-      return opts.data.root.useYarn ? "yarn" : "npm run";
+    useYarn(opts) {
+      if (opts.data.root.packageManager == "yarn") return opts.fn(this);
+      return opts.inverse(this);
     },
-    pp(opts) {
-      let result = ",";
-      let pps = opts.data.root.preprocessors;
-      if (pps["Pug"])
-        result += `
-    "pug": "^2.0.3",
-    "pug-plain-loader": "^1.0.0",`;
-      if (pps["TypeScript"])
-        result += `
-    "ts-loader": "^5.3.3",`;
-      if (pps["CoffeeScript"])
-        result += `
-    "coffee-loader": "^0.9.0",
-    "coffeescript": "^2.3.2",`;
-      if (pps["SASS/SCSS"])
-        result += `
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",`;
-      return result.replace(/.$/, "");
+    pm(opts) {
+      return opts.data.root.packageManager == "yarn" ? "yarn" : "npm run";
+    },
+    has(v, opts) {
+      if (opts.data.root.preprocessors[v]) return opts.fn(this);
+      return opts.inverse(this);
     }
   },
   completeMessage: "All done. Open your project and read README :)"
