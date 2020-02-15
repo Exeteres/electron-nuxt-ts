@@ -16,7 +16,7 @@
 ## Installation
 
 ```shell
-vue init Exeteres/electron-nuxt-ts <app-name>
+vue init Exeteres/electron-nuxt-ts#legacy <app-name>
 ```
 
 ## Contributing
