@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "outDir": "dist/main",
+        "module": "esnext",
+        "target": "es2018",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["./src/renderer/*"],
+            "@/*": ["./src/renderer/*"]
+        },
+        "types": ["@types/node", "@nuxt/types"]
+    }
+}
