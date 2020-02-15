@@ -21,7 +21,7 @@ See [legacy](https://github.com/Exeteres/electron-nuxt-ts/tree/legacy) branch. P
 Due to maintain difficulties, the installation via `vue-cli` has been removed. Now this repository is a template. Just clone it.
 
 ```shell
-git clone Exeteres/electron-nuxt-ts
+git clone https://github.com/exeteres/electron-nuxt-ts
 ```
 
 ## FAQ
