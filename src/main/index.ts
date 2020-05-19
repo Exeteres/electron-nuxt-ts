@@ -9,7 +9,11 @@ import { resolve } from "path";
 let win: BrowserWindow;
 
 function loadContent(port = 3000) {
-    win = new BrowserWindow();
+    win = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
     win.loadURL(`http://localhost:${port}`);
 }
 

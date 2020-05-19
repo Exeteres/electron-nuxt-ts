@@ -31,27 +31,27 @@
         "dev": "yarn build:main && concurrently -k -n main,renderer -c blue,green \"cross-env NODE_ENV=development electron .\" \"nuxt-ts dev\""
     },
     "devDependencies": {
-        "@nuxt/typescript-build": "^0.5.6",
+        "@nuxt/typescript-build": "^0.6.6",
         "@types/electron-devtools-installer": "^2.2.0",
         "@types/express": "^4.16.0",
         "@types/express-useragent": "^1.0.0",
-        "@types/node": "^10.12.18",
+        "@types/node": "^12.7.11",
         "@types/wait-on": "^4.0.0",
-        "concurrently": "^4.1.0",
-        "cross-env": "^5.2.0",
-        "electron": "^4.0.0",
-        "electron-builder": "^20.38.4",
-        "electron-devtools-installer": "^2.2.4",
-        "nuxt": "^2.3.4",
-        "typescript": "^3.2.2"
+        "concurrently": "^5.2.0",
+        "cross-env": "^7.0.2",
+        "electron": "^8.3.0",
+        "electron-builder": "^22.6.0",
+        "electron-devtools-installer": "^3.0.0",
+        "nuxt": "^2.12.2",
+        "typescript": "3.8.3"
     },
     "license": "MIT",
     "dependencies": {
-        "@nuxt/typescript-runtime": "^0.3.8",
+        "@nuxt/typescript-runtime": "^0.4.6",
         "express": "^4.16.4",
-        "express-useragent": "^1.0.12",
-        "get-port": "^4.1.0",
+        "express-useragent": "^1.0.13",
+        "get-port": "^5.1.1",
         "nuxt-class-component": "^1.3.0",
-        "wait-on": "^3.2.0"
+        "wait-on": "^5.0.0"
     }
 }
